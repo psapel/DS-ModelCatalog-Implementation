@@ -25,8 +25,12 @@ if __name__ == '__main__':
 @app.route('/radio_button')
 def radio_button():
     ans = request.form['gender']
-    return f"{ans} student"
-    
+    if ans == "Male" or ans== "Female" or ans=="Non-binary":
+        return f"{ans} student"
+    else:
+        return f"Student of {ans} gender"
+
+  
 if __name__ == '__main__':
     app.run(debug=True)
 
@@ -41,3 +45,4 @@ def dropdown():
 
 if __name__=='__main__':
     app.run(debug=True)
+
