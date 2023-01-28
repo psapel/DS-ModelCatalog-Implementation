@@ -2,15 +2,15 @@
 
 <html lang="eng">
     <head>
-        <link rel="stylesheet" href="styles.css">
+        <h1>Application</h1>
+        <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
         <meta charset="UTF-8">
         <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge"
-        <title>Application</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
     </head>
     <body>
         <form method="POST" action="/">
-            <h1 for="lang">Transport</h1>
+            <h2 for="lang">Transport</h2>
             <br><label for="checkboxes"></label><br>
             Plane<input type="checkbox" value="Plane" name="checked"><br>
             Car<input type="checkbox" value="Car" name="checked"><br>
@@ -21,7 +21,7 @@
 
 <body>
     <form action="/radio_button" method="POST">
-        <h2 for="lang">Gender</h2>
+        <h4 for="lang">Gender</h4>
           <input type="radio" name="gender" value="Female" >Female<br>
           <input type="radio" name="gender" value="Male" >Male<br>
           <input type='radio' name='gender' value='Non-binary'>Non-binary<br>
@@ -33,9 +33,9 @@
 <html>
 
 <form method="POST" action="/dropdown">
-    <h3 for="lang">Languages</h3>
+    <h4 for="lang">Languages</h4>
         <br><select name="choice" id="lang"><br>
-            <option value="null" disable="disable">Choose a language</option>
+            <option value="null" disable="disable">--Please choose a language--</option>
       <option value="JavaScript">JavaScript</option>
       <option value="R">R</option>
       <option value="Java">Java</option>
@@ -49,6 +49,5 @@
 </form>
 
 </html>
-
 
 
