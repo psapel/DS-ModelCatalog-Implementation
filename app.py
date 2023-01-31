@@ -16,7 +16,7 @@ def checkbox():
     return render_template('index.html')
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=5000, debug=True, threaded=False)
+    app.run(debug=True, use_reloader=True)
 
 #RADIO BUTTONS
 
@@ -32,7 +32,7 @@ def radio_button():
 
   
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=5000, debug=True, threaded=False)
+    app.run(debug=True, use_reloader=True)
 
 #DROPDOWN MENU
 
@@ -44,5 +44,5 @@ def dropdown():
     return f"I like % s" % ans_1
 
 if __name__=='__main__':
-    app.run(host='127.0.0.1', port=5000, debug=True, threaded=False)
+    app.run(debug=True, use_reloader=True)
 
