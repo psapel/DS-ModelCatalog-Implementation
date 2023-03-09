@@ -22,6 +22,7 @@ h2 {
   margin: 1px 1px -1px -1px; 
 }
 
+
 h3 {
   color: rgb(43, 43, 89);
   font-family: courier;
@@ -35,5 +36,25 @@ h4 {
   font-family: courier;
   font-size: 150%;
   border: 2px solid rgb(1, 15, 16);
+  padding: 30px; 
+}
+
+
+h5 {
+  color: rgb(43, 43, 89);
+  font-family: courier;
+  font-size: 150%;
+  border: 2px solid rgb(1, 15, 16);
   padding: 30px;
 }
+
+h6 {
+  color: rgb(43, 43, 89);
+  font-family: courier;
+  font-size: 150%;
+  border: 2px solid rgb(1, 15, 16);
+  padding: 30px;
+}
+
+
+
