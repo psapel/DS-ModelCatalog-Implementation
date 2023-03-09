@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html lang="eng">
+    <head>
+        <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+        <meta charset="UTF-8">
+        <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    </head>
+    <body>
+        <form method="POST">
+            <h6>Selection</h6>
+            {% for module in out_list %}
+              <label>
+                <input type="checkbox" name="module" value="{{ module }}"> {{ module }}
+              </label><br>
+            {% endfor %}
+            <br>
+            <input type="submit" value="Submit">
+          </form>
+        </form>
+    </body>
+    </html>
