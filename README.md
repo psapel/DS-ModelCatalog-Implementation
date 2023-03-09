@@ -15,3 +15,9 @@
 
 5. Write the environment variable, name and value in a file named .flaskenv
 ```FLASK_APP=app.py```
+
+6. Install Meilisearch
+curl -L https://install.meilisearch.com | sh
+
+7. Launch Meilisearch
+./meilisearch --master-key=masterKey
