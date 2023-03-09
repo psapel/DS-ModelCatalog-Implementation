@@ -28,8 +28,8 @@ if __name__ == '__main__':
 #RADIO BUTTONS
 
 # Path to directory containing JSON files
-json_dir = 'C:/Users/annga/OneDrive/Desktop/HiWi - IKV/GUI/gui/DS-ModelCatalog/json_files/'
-scripts_dir = 'C:/Users/annga/OneDrive/Desktop/HiWi - IKV/GUI/gui/DS-ModelCatalog/scripts/'
+json_dir = 'path_to_json_folder/'
+scripts_dir = 'path_to_python_scripts/'
 client = meilisearch.Client('http://127.0.0.1:7700', 'masterKey')
 index = client.index('json_files')
 index.update_filterable_attributes(['gender', 'nationality'])
