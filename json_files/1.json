@@ -1,7 +1,6 @@
 
-   {
+    {
     "id":1,
-    "script": "script1.py",
     "gender":"Female",
     "name":"Rose Young",
     "age":28,

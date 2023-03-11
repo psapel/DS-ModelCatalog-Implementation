@@ -1,7 +1,6 @@
 
     {
         "id":2,
-        "script": "script2.py",
         "gender":"Female",
         "name":"Athena Craig",
         "age":22,
