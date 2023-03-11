@@ -8,6 +8,8 @@ from meilisearch import Client
 import json
 import os
 
+import subprocess
+
 app = Flask(__name__)
 
 #CHECKBOXES
@@ -28,8 +30,8 @@ if __name__ == '__main__':
 #RADIO BUTTONS
 
 # Path to directory containing JSON files
-json_dir = 'path_to_json_folder/'
-scripts_dir = 'path_to_python_scripts/'
+json_dir = 'C:/Users/annga/OneDrive/Desktop/HiWi - IKV/GUI/gui/DS-ModelCatalog/json_files/'
+scripts_dir = 'C:/Users/annga/OneDrive/Desktop/HiWi - IKV/GUI/gui/DS-ModelCatalog/scripts/'
 client = meilisearch.Client('http://127.0.0.1:7700', 'masterKey')
 index = client.index('json_files')
 index.update_filterable_attributes(['gender', 'nationality'])
@@ -131,10 +133,9 @@ def nationality():
 # convert output of the nationality function into a string 
 def convert(out):
     if request.method=='GET':
-        out  = out[:-4] 
+        out  = out[:-4]
         out = out.split("<br>")
         out = ','.join(out)
-
         return redirect(url_for('selection', out=out))
 
              
@@ -145,15 +146,20 @@ def convert(out):
 def selection(out):
      # Convert the input string into a list of strings
     out_list = out.split(",")
-    
+    print(out_list)
     if request.method == 'POST':
-        # Get the selected module value from the form submission
-        selected_module = request.form.getlist('module')
-        selected_module = '<br>'.join(' '.join(item.split())  for item in selected_module)
-
-        return selected_module
+        #Get the selected module value from the form submission
+        selected_modules = request.form.getlist('module')
+        #selected_modules = '<br>'.join(' '.join(item.split())  for item in selected_modules)
+        module_list =  [int(module.split()[1]) for module in selected_modules]
+        #return selected_modules
+        output_dict = {}
+        for module in module_list:
+            output = subprocess.check_output(['python', scripts_dir + f'script{module}.py'], stderr=subprocess.STDOUT, text=True)
+            output_dict[module] = output.strip()
+        return render_template('result.html', output_dict=output_dict)
     else:
-        # Render the selection.html template with the out_list variable
+        #Render the selection.html template with the out_list variable
         return render_template('selection.html', out_list=out_list)
     
 if __name__ == '__main__':
