@@ -1,9 +1,0 @@
-{
-    "GrahamNotation": {
-      "name": "Model 3",
-      "alpha": "SingleMachine",
-      "beta": ["SeqDepSetup", "Batchb", "MachineEligibilityRestrictions"],
-      "gamma": ["TotalWeightedTardiness"]
-    }
-  }
-  
