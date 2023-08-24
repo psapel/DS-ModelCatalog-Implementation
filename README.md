@@ -1,20 +1,23 @@
-# DS-ModelCatalog
-Model Catalog for Digital Shadows (Internet of Production)
+1. Install Flask
+```pip install flask```
 
+2. Place dependencies in a text file
+```pip freeze > requirements.txt```
 
-Goal: Via GUI, a user selects different criteria representing the optimization problem. After pressing a button, in the backend, the right models will be gatherd.
+3.1 Set the FLASK_APP environment variable for Linux
+```export FLASK_APP=app.py```
 
-Todo:
-1) Build a simple GUI with basic fuctions, i.e., dropdowns, radio buttons, and check boxes. Use FLASK as framework for including HTML into Python.
-Here is a FLASK guide: https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
+3.2 Set the FLASK_APP environment variable for Microsoft Windows
+```set FLASK_APP=app.py```
 
-2) "Connect" the frontend with the backend. That means, when pressing a button, anything happends depending on the user input. Anything means an exemplary
-print statement in a pythin file, e.g., "You choose Option 1". Summarized, pressing the button starts a python script.
+4. Register environment variables in order to be automatically imported by running the flask command
+```pip install python-dotenv```
 
-3) After the connection of front and backend, integrate Meilisearch as tool for findig python-scripts dynamically. Therefore, the python files have to be described 
-with semantics from a JSON file. We will provide a sampel file later. Based on the input data from the GUI, Meilisearch should scan the JSONs and retreive all python
-files that matches with the input arguments fron the GUI.
-Here is the API for python: https://github.com/meilisearch/meilisearch-python
-Meilisearch itself is findable via google.
+5. Write the environment variable, name and value in a file named .flaskenv
+```FLASK_APP=app.py```
 
-Please provide the files in the GIT. Thank you!
+6. Install Meilisearch
+curl -L https://install.meilisearch.com | sh
+
+7. Launch Meilisearch
+./meilisearch --master-key=masterKey
