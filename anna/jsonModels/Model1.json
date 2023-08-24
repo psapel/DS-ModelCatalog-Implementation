@@ -1,9 +1,0 @@
-{
-    "GrahamNotation": {
-      "name": "Model 1",
-      "alpha": "IdenticalMachinesInParallel",
-      "beta": ["SeqDepSetup", "Batchb", "MachineEligibilityRestrictions"],
-      "gamma": ["WeightedNumberOfTardyJobs"]
-    }
-  }
-  
