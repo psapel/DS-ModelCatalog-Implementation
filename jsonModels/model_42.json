@@ -1,0 +1,12 @@
+{
+    "name": "model_42",
+    "https://www.iop.rwth-aachen.de/PPC/1/1/machineEnvironment": "https://www.iop.rwth-aachen.de/PPC/1/1/parallelMachines",
+    "https://www.iop.rwth-aachen.de/PPC/1/1/schedulingConstraints":  [
+        "https://www.iop.rwth-aachen.de/PPC/1/1/seqDepSetup"
+    ],
+    "https://www.iop.rwth-aachen.de/PPC/1/1/schedulingObjectiveFunction": [
+        "https://www.iop.rwth-aachen.de/PPC/1/1/maxCompletionTime",
+        "https://www.iop.rwth-aachen.de/PPC/1/1/weightedSumTardiness"
+    ],
+    "formula": "Pₘ | sᵢⱼ  | Cₘₐₓ, ΣwⱼTⱼ"
+}
