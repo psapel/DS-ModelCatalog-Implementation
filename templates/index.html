@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+    <html lang="eng">
+    <head>
+        <h1>Model Catalog</h1>
+        <h5>Scheduling Models for the Injection Molding domain</h5>
+        <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+        <meta charset="UTF-8">
+        <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    </head>
+<body>
+    <link rel="stylesheet" media="screen and (min-width: 1024px)" href="css/style.css">
+
+  <form method="POST" action="/">
+    <div class="container">
+        <div class="container-column">
+            <div class="set">
+                <h2>&alpha; - Machine environments</h2>
+                
+                <div class="checkbox-container">
+                    <input type="radio" name="machine" value="SingleMachine" id="machine1">
+                    <label for="machine1">Single machine (1)</label>
+                </div>
+                
+                <div class="checkbox-container">
+                    <input type="radio" name="machine" value="IdenticalMachinesInParallel" id="machine2">
+                    <label for="machine2">Identical machines in parallel (P<sub>m</sub>)</label>
+                </div>
+                
+                <div class="checkbox-container">
+                    <input type="radio" name="machine" value="MachinesInParallelWithDifferentSpeeds" id="machine3">
+                    <label for="machine3">Machines in parallel with different speeds (Q<sub>m</sub>)</label>
+                </div>
+                
+                <div class="checkbox-container">
+                    <input type="radio" name="machine" value="UnrelatedMachinesInParallel" id="machine4">
+                    <label for="machine4">Unrelated machines in parallel (R<sub>m</sub>)</label>
+                </div>
+
+                <div class="checkbox-container">
+                    <input type="radio" name="machine" value="FlowShop" id="machine5">
+                    <label for="machine5">Flow shop (F<sub>m</sub>)</label>
+                </div>
+            
+                <div class="checkbox-container">
+                    <input type="radio" name="machine" value="FlexibleFlowShop" id="machine6">
+                    <label for="machine6">Flexible flow shop (FFc)</label>
+                </div>
+            
+                <div class="checkbox-container">
+                    <input type="radio" name="machine" value="JobShop" id="machine7">
+                    <label for="machine7">Job shop (J<sub>m</sub>)</label>
+                </div>
+            
+                <div class="checkbox-container">
+                    <input type="radio" name="machine" value="FlexibleJobShop" id="machine8">
+                    <label for="machine8">Flexible job shop (FJ<sub>c</sub>)</label>
+                </div>
+            
+                <div class="checkbox-container">
+                    <input type="radio" name="machine" value="OpenShop" id="machine9">
+                    <label for="machine9">Open shop (O<sub>m</sub>)</label>
+                </div>
+            
+            </div>
+        </div>
+        
+        <div class="container-column">
+            <div class="set">
+                <h3>&beta; - Job Characteristics</h3>
+                
+                <div class="checkbox-container">
+                    <input type="checkbox" value="ReleaseDates" name="checked[]" id="job1">
+                    <label for="job1">Release dates (r<sub>j</sub>)</label>
+                </div>
+                
+                <div class="checkbox-container">
+                    <input type="checkbox" value="Preemp" name="checked[]" id="job2">
+                    <label for="job2">Preemptions (prmp)</label>
+                </div>
+                
+                <div class="checkbox-container">
+                    <input type="checkbox" value="Prec" name="checked[]" id="job3">
+                    <label for="job3">Precedence constraints (prec)</label>
+                </div>
+                
+                <div class="checkbox-container">
+                    <input type="checkbox" value="SeqDepSetup" name="checked[]" id="job4">
+                    <label for="job4">Sequence dependent setup times (s<sub>jk</sub>)</label>
+                </div>
+                
+                <div class="checkbox-container">
+                    <input type="checkbox" value="Fmls" name="checked[]" id="job5">
+                    <label for="job5">Job families (fmls)</label>
+                </div>
+                
+                <div class="checkbox-container">
+                    <input type="checkbox" value="Batchb" name="checked[]" id="job6">
+                    <label for="job6">Batch processing (batch(b))</label>
+                </div>
+                
+                <div class="checkbox-container">
+                    <input type="checkbox" value="Breakdown" name="checked[]" id="job7">
+                    <label for="job7">Breakdown (brkdwn)</label>
+                </div>
+                
+                <div class="checkbox-container">
+                    <input type="checkbox" value="MachineEligibilityRestrictions" name="checked[]" id="job8">
+                    <label for="job8">Machine eligibility restrictions (M<sub>j</sub>)</label>
+                </div>
+                
+                <div class="checkbox-container">
+                    <input type="checkbox" value="Perm" name="checked[]" id="job9">
+                    <label for="job9">Permutation (prmu)</label>
+                </div>
+                
+                <div class="checkbox-container">
+                    <input type="checkbox" value="Block" name="checked[]" id="job10">
+                    <label for="job10">Blocking (block)</label>
+                </div>
+                
+                <div class="checkbox-container">
+                    <input type="checkbox" value="NoWait" name="checked[]" id="job11">
+                    <label for="job11">No-wait (nwt)</label>
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" value="Rec" name="checked[]" id="job12">
+                    <label for="job12">Recirculation (rcrc)</label>
+                  </div>
+                </div>
+              </div>
+              
+                    <div class="container-column">
+                      <div class="set">
+                          <h4>&gamma; - Objective function</h4>
+                          
+                          <div class="checkbox-container">
+                              <input type="checkbox" value="Makespan" name="checking[]" id="objective1">
+                              <label for="objective1">Makespan (C<sub>max</sub>)</label>
+                          </div>
+                          
+                          <div class="checkbox-container">
+                              <input type="checkbox" value="MaxLateness" name="checking[]" id="objective2">
+                              <label for="objective2">Maximum Lateness (L<sub>max</sub>)</label>
+                          </div>
+                          
+                          <div class="checkbox-container">
+                              <input type="checkbox" value="TotalWeightedCompletionTime" name="checking[]" id="objective3">
+                              <label for="objective3">Total weighted completion time (&Sigma;(w<sub>j</sub>C<sub>j</sub>))</label>
+                          </div>
+                          
+                          <div class="checkbox-container">
+                              <input type="checkbox" value="DiscountedTotalWeightedCompletionTime" name="checking[]" id="objective4">
+                              <label for="objective4">Discounted total weighted completion time (&Sigma;(w<sub>j</sub>(1 &minus; e<sup>-rC<sub>j</sub></sup>)))</label>
+                          </div>
+                          
+                          <div class="checkbox-container">
+                              <input type="checkbox" value="TotalWeightedTardiness" name="checking[]" id="objective5">
+                              <label for="objective5">Total weighted tardiness (&Sigma;(w<sub>j</sub>T<sub>j</sub>))</label>
+                          </div>
+                          
+                          <div class="checkbox-container">
+                              <input type="checkbox" value="WeightedNumberOfTardyJobs" name="checking[]" id="objective6">
+                              <label for="objective6">Weighted number of tardy jobs (&Sigma;(w<sub>j</sub>U<sub>j</sub>))</label>
+                        </div>
+                    </div>
+            </div> 
+
+        </div>
+
+        <div class="button-container">
+            <button type="submit" class="submit-button">Submit</button>
+        </div>
+    </div>
+
+</form>
+
+<img src="{{ url_for('serve_image', filename='image.png') }}"alt="Image" class="image">
+  
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "_id": "64cf922c31d29383264e5182",
+  "GrahamNotation": {
+    "name": "Model 3",
+    "alpha": "IdenticalMachinesInParallel",
+    "beta": [
+      "SeqDepSetup"
+    ],
+    "gamma": [
+      "Makespan",
+      "DiscountedTotalWeightedCompletionTime"
+    ]
+  }
+}
