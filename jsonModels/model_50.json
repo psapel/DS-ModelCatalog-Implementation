@@ -1,9 +1,0 @@
-{
-    "name": "model_50",
-    "https://www.iop.rwth-aachen.de/PPC/1/1/machineEnvironment": "https://www.iop.rwth-aachen.de/PPC/1/1/singleMachine",
-    "https://www.iop.rwth-aachen.de/PPC/1/1/schedulingConstraints": "https://www.iop.rwth-aachen.de/PPC/1/1/",
-    "https://www.iop.rwth-aachen.de/PPC/1/1/schedulingObjectiveFunction": [
-        "https://www.iop.rwth-aachen.de/PPC/1/1/weightedSumCompletionTimemaschEligibility"
-    ],
-    "formula": "1 | Mⱼ | ΣwⱼCⱼ"
-}

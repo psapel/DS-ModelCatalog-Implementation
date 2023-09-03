@@ -22,30 +22,31 @@ index_settings = {
     "mappings": {
         "properties": {
             "GrahamNotation": {
-                "properties": { 
-                    "alpha": {"type": "keyword"},
-                    "beta": {"type": "keyword"},
-                    "gamma": {"type": "keyword"}
+                "properties": {
+                    "https://www.iop.rwth-aachen.de/PPC/1/1/machineEnvironment": {"type": "keyword"},
+                    "https://www.iop.rwth-aachen.de/PPC/1/1/schedulingConstraints": {"type": "keyword"},
+                    "https://www.iop.rwth-aachen.de/PPC/1/1/schedulingObjectiveFunction": {"type": "keyword"}
                 }
             }
         }
     }
 }
 
-index_name = 'models_index'
+index_name = 'models'
 
 
 if not es.indices.exists(index=index_name):
-    es.indices.create(index=index_name, body={"settings": index_settings["settings"]})
+    #es.indices.create(index=index_name, body={"settings": index_settings["settings"]})
+    es.indices.create(index=index_name, body={"settings": index_settings["settings"]}, mappings=index_settings["mappings"])
 
 def load_models(es):
-    model_folder = 'jsonM'
+    model_folder = 'jsonModels'
     models = []  
     for filename in os.listdir(model_folder):
         if filename.endswith('.json'):
             model_path = os.path.join(model_folder, filename)
             try:
-                with open(model_path, 'r') as f:
+                with open(model_path, 'r', encoding='utf-8') as f:
                     model_data = json.load(f)
                     model_id = model_data.get('_id')  
                     if model_id:
@@ -58,7 +59,7 @@ def load_models(es):
                         print(f"Model ID not found in JSON: {model_path}")
             except FileNotFoundError:
                 print(f"Failed to load model: {model_path}")
-
+    
     return models  
 
 
@@ -67,24 +68,70 @@ def load_models(es):
 loaded_models = load_models(es)
 
 
-def find_matching_model(es, alpha, beta, gamma):
-    print(f"Searching with alpha: {alpha}, beta: {beta}, gamma: {gamma}")
+def find_matching_model(es, url1, url2, url3):
+#     query = {
+#     "query": {
+#         "bool": {
+#             "must": [
+#                 {"match": {"https://www.iop.rwth-aachen.de/PPC/1/1/machineEnvironment": url1}},
+#                 {"terms":{"https://www.iop.rwth-aachen.de/PPC/1/1/schedulingConstraints.keyword": url2, "operator" : "AND"}},
+#                 {"terms": {"https://www.iop.rwth-aachen.de/PPC/1/1/schedulingObjectiveFunction.keyword": url3, "operator" : "AND"}}
+#             ]
+#         }
+#     }
+# }
+    len_2 = len(url2) 
+    len_3 = len(url3)
     
     query = {
-    "query": {
-        "bool": {
-            "must": [
-                {"match_phrase": {"alpha": alpha}},
-                {"terms": {"beta.keyword": beta}},
-                {"terms": {"gamma.keyword": gamma}}  
-            ]
-        }
-    }
-}
+        "query":{
+            "bool":{
+                "must":
+                    [{"match_phrase": {"https://www.iop.rwth-aachen.de/PPC/1/1/machineEnvironment": url1}},
+        {"terms":{
+                #"https://www.iop.rwth-aachen.de/PPC/1/1/machineEnvironment": url1
+                "https://www.iop.rwth-aachen.de/PPC/1/1/schedulingConstraints.keyword": url2}},
+       {
+           "script":
+            {
+                "script":
+                {
+                        "source": "doc['https://www.iop.rwth-aachen.de/PPC/1/1/schedulingConstraints.keyword'].length == params.fixed_array_length",
+                        "params":{
+                            "fixed_array_length": len_2
+                        }
+                }
+            }
+        },
+        #     "should":[
+        {
+            "terms":{
+                "https://www.iop.rwth-aachen.de/PPC/1/1/schedulingObjectiveFunction.keyword": url3}},
 
+        {
+           "script":
+            {
+                "script":
+                {
+                        "source": "doc['https://www.iop.rwth-aachen.de/PPC/1/1/schedulingObjectiveFunction.keyword'].length == params.fixed_array_length",
+                        "params":{
+                            "fixed_array_length": len_3
+                        }
+                }
+            }
+        }
+
+                ]
+                    
+        
+            }
+        }
+
+    }
+        
     print("Elasticsearch Query:", query)
     
-    result = es.search(index='models_index', body=query)
+    result = es.search(index='models', size=16, body=query)
     hits = result.get('hits', {}).get('hits', [])
    
     print("Number of hits:", len(hits))
@@ -93,6 +140,7 @@ def find_matching_model(es, alpha, beta, gamma):
         for hit in hits:
              source = hit.get('_source')  
              print("Retrieved Document:", source)
+    
     return hits
 
 
@@ -100,25 +148,24 @@ def find_matching_model(es, alpha, beta, gamma):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        alpha = request.form.get('machine')
-        beta = request.form.getlist('checked[]')
-        gamma = request.form.getlist('checking[]')
+        machine_environment = request.form.get('machine')
+        scheduling_constraints = request.form.getlist('checked[]')
+        scheduling_objective_function = request.form.getlist('checking[]')
         print("Received values:")
-        print("Alpha:", alpha)
-        print("Beta:", beta)
-        print("Gamma:", gamma)
-        
+        print("Machine Environment:", machine_environment)
+        print("Scheduling Constraints:", scheduling_constraints)
+        print("Scheduling Objective Function:", scheduling_objective_function)
 
-        matching_model = find_matching_model(es, alpha, beta, gamma)
-        print("matching models:", matching_model)
-         # Extract the relevant information from the hits
+        matching_model = find_matching_model(es, machine_environment, scheduling_constraints, scheduling_objective_function)
+        print("Matching models:", matching_model)
+        
+        # Extract the relevant information from the hits
         selected_models = []
         for hit in matching_model:
             source = hit.get('_source', {})
             selected_models.append(source)
         
         print("Matching Models:", selected_models)
-        
         
         if selected_models:
             return render_template('selection.html', selected_models=selected_models)

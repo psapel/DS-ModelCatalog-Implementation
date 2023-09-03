@@ -16,8 +16,8 @@
             <div class="set">
                 <h6>{{ selected_model["name"] }}</h6>
                 <div class="checkbox-container">
-                    <input type="checkbox" name="selected_model" value="{{ selected_model["name"] }}" id="selected_model">
-                    <label for="selected_model">{{ selected_model["name"] }}</label>
+                    <input type="checkbox" name="selected_model" value="{{ selected_model["name"] }}" id="selected_model_{{ loop.index }}">
+                    <label for="selected_model_{{ loop.index }}">{{ selected_model["name"] }}</label>
                 </div>
             </div>
             {% endfor %}
@@ -37,9 +37,9 @@
     <script>
         function submitForm(event) {
             event.preventDefault();
-            var checkbox = document.getElementById("selected_model");
+            var checkbox = document.querySelector("input[name='selected_model']:checked");
     
-            if (checkbox.checked) {
+            if (checkbox) {
                 var form = document.getElementById("json_form");
                 var formData = new FormData(form);
     

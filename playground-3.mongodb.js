@@ -1,6 +1,6 @@
-const database = 'ModelCatalog';
-const collection = 'jsonFiles';
-const outputFolder = 'jsonM';
+const database = 'DS-ModelCatalogue';
+const collection = 'jsonModels';
+const outputFolder = 'jsonModelsNEW';
 
 // The current database to use.
 use(database);
