@@ -69,17 +69,7 @@ loaded_models = load_models(es)
 
 
 def find_matching_model(es, url1, url2, url3):
-#     query = {
-#     "query": {
-#         "bool": {
-#             "must": [
-#                 {"match": {"https://www.iop.rwth-aachen.de/PPC/1/1/machineEnvironment": url1}},
-#                 {"terms":{"https://www.iop.rwth-aachen.de/PPC/1/1/schedulingConstraints.keyword": url2, "operator" : "AND"}},
-#                 {"terms": {"https://www.iop.rwth-aachen.de/PPC/1/1/schedulingObjectiveFunction.keyword": url3, "operator" : "AND"}}
-#             ]
-#         }
-#     }
-# }
+
     len_2 = len(url2) 
     len_3 = len(url3)
     
@@ -89,7 +79,6 @@ def find_matching_model(es, url1, url2, url3):
                 "must":
                     [{"match_phrase": {"https://www.iop.rwth-aachen.de/PPC/1/1/machineEnvironment": url1}},
         {"terms":{
-                #"https://www.iop.rwth-aachen.de/PPC/1/1/machineEnvironment": url1
                 "https://www.iop.rwth-aachen.de/PPC/1/1/schedulingConstraints.keyword": url2}},
        {
            "script":
