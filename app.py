@@ -92,7 +92,6 @@ def find_matching_model(es, url1, url2, url3):
                 }
             }
         },
-        #     "should":[
         {
             "terms":{
                 "https://www.iop.rwth-aachen.de/PPC/1/1/schedulingObjectiveFunction.keyword": url3}},
