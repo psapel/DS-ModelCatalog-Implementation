@@ -8,7 +8,6 @@
       "https://www.iop.rwth-aachen.de/PPC/1/1/maschEligibility"
     ],
     "https://www.iop.rwth-aachen.de/PPC/1/1/schedulingObjectiveFunction": [
-      "https://www.iop.rwth-aachen.de/PPC/1/1/seqDepSetup",
       "https://www.iop.rwth-aachen.de/PPC/1/1/weightedSumCompletionTime"
     ],
     "formula": "Pₘ | sᵢⱼ, Mⱼ | ΣwⱼCⱼ"

@@ -53,7 +53,7 @@
                 </div>
             
                 <div class="checkbox-container">
-                    <input type="radio" name="machine" value="http://www.iop.rwth-aachen.de/PPC/1/1/flexibleJobShop" id="machine8">
+                    <input type="radio" name="machine" value="https://www.iop.rwth-aachen.de/PPC/1/1/flexibleJobShop" id="machine8">
                     <label for="machine8">Flexible job shop (FJ<sub>c</sub>)</label>
                 </div>
             
@@ -84,7 +84,7 @@
                 </div>
                 
                 <div class="checkbox-container">
-                    <input type="checkbox" value="https://www.iop.rwth-aachen.de/PPC/1/1/SeqDepSetup" name="checked[]" id="job4">
+                    <input type="checkbox" value="https://www.iop.rwth-aachen.de/PPC/1/1/seqDepSetup" name="checked[]" id="job4">
                     <label for="job4">Sequence dependent setup times (s<sub>i,j</sub>)</label>
                 </div>
                 
@@ -99,7 +99,7 @@
                 </div>
                 
                 <div class="checkbox-container">
-                    <input type="checkbox" value="https://www.iop.rwth-aachen.de/PPC/1/1/breakdo" name="checked[]" id="job7">
+                    <input type="checkbox" value="https://www.iop.rwth-aachen.de/PPC/1/1/breakdown" name="checked[]" id="job7">
                     <label for="job7">Breakdown (brkdwn)</label>
                 </div>
                 
@@ -147,15 +147,25 @@
                               <input type="checkbox" value="https://www.iop.rwth-aachen.de/PPC/1/1/weightedSumCompletionTime" name="checking[]" id="objective3">
                               <label for="objective3">Total weighted completion time (&Sigma;(w<sub>j</sub>C<sub>j</sub>))</label>
                           </div>
-                            
+
                           <div class="checkbox-container">
-                              <input type="checkbox" value="https://www.iop.rwth-aachen.de/PPC/1/1/weightedSumTardiness" name="checking[]" id="objective4">
-                              <label for="objective4">Total weighted tardiness (&Sigma;(w<sub>j</sub>T<sub>j</sub>))</label>
-                          </div>
+                            <input type="checkbox" value="http://www.iop.rwth-aachen.de/PPC/1/1/sumCompletionTime" name="checking[]" id="objective4">
+                            <label for="objective4">Total completion time (&Sigma;C<sub>j</sub>)</label>
+                        </div>
+
+                          <div class="checkbox-container">
+                            <input type="checkbox" value="https://www.iop.rwth-aachen.de/PPC/1/1/sumTardiness" name="checking[]" id="objective5">
+                            <label for="objective5">Total tardiness (&Sigma;(T<sub>j</sub>))</label>
+                        </div>
+                            
+                        <div class="checkbox-container">
+                            <input type="checkbox" value="https://www.iop.rwth-aachen.de/PPC/1/1/weightedSumTardiness" name="checking[]" id="objective6">
+                            <label for="objective6">Total weighted tardiness (&Sigma;(w<sub>j</sub>T<sub>j</sub>))</label>
+                        </div>
                           
                           <div class="checkbox-container">
-                            <input type="checkbox" value="https://www.iop.rwth-aachen.de/PPC/1/1/sumEarliness" name="checking[]" id="objective5">
-                            <label for="objective5">Total earliness for each job (&Sigma;(E<sub>j</sub>))</label>
+                            <input type="checkbox" value="https://www.iop.rwth-aachen.de/PPC/1/1/sumEarliness" name="checking[]" id="objective7">
+                            <label for="objective7">Total earliness for each job (&Sigma;(E<sub>j</sub>))</label>
                           </div>
                     </div>
             </div> 

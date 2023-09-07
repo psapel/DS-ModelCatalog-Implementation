@@ -9,7 +9,7 @@
     ],
     "https://www.iop.rwth-aachen.de/PPC/1/1/schedulingObjectiveFunction": [
       "https://www.iop.rwth-aachen.de/PPC/1/1/maxCompletionTime",
-      "https://www.iop.rwth-aachen.de/PPC/1/1//sumTardiness"
+      "https://www.iop.rwth-aachen.de/PPC/1/1/sumTardiness"
     ],
     "formula": "Pₘ | sᵢⱼ, Mⱼ | Cₘₐₓ, ΣTⱼ"
   }

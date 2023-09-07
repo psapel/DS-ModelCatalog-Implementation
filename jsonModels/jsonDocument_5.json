@@ -11,6 +11,6 @@
       "https://www.iop.rwth-aachen.de/PPC/1/1//sumTardiness",
       "https://www.iop.rwth-aachen.de/PPC/1/1//sumEarliness"
     ],
-    "formula": "1 | sᵢⱼ, LCⱼ | Cₘₐₓ, ΣTⱼ, ΣEⱼ"
+    "formula": "1 | sᵢⱼ | Cₘₐₓ, ΣTⱼ, ΣEⱼ"
   }
 }

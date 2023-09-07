@@ -11,7 +11,7 @@
       "https://www.iop.rwth-aachen.de/PPC/1/1/breakdown"
     ],
     "https://www.iop.rwth-aachen.de/PPC/1/1/schedulingObjectiveFunction": [
-      "https://www.iop.rwth-aachen.de/PPC/1/1/weightedSumCompletionTime"
+      "http://www.iop.rwth-aachen.de/PPC/1/1/sumCompletionTime"
     ],
     "formula": "FJc | sᵢⱼ, Mⱼ, rⱼ, prec, brkdwn  | ΣCⱼ"
   }
