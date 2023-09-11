@@ -32,7 +32,7 @@ index_settings = {
     }
 }
 
-index_name = 'models_search'
+index_name = 'new_search'
 
 
 if not es.indices.exists(index=index_name):
@@ -119,7 +119,7 @@ def find_matching_model(es, url1, url2, url3):
         
     print("Elasticsearch Query:", query)
     
-    result = es.search(index='models_search', size=16, body=query)
+    result = es.search(index='new_search', size=16, body=query)
     hits = result.get('hits', {}).get('hits', [])
    
     print("Number of hits:", len(hits))
