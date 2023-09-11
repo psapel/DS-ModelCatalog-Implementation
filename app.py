@@ -25,7 +25,7 @@ index_settings = {
                 "properties": {
                     "https://www.iop.rwth-aachen.de/PPC/1/1/machineEnvironment": {"type": "keyword"},
                     "https://www.iop.rwth-aachen.de/PPC/1/1/schedulingConstraints": {"type": "keyword"},
-                    "https://www.iop.rwth-aachen.de/PPC/1/1/schedulingObjectiveFunction": {"type": "keyword"}
+                    "https://wwwmodels_search.iop.rwth-aachen.de/PPC/1/1/schedulingObjectiveFunction": {"type": "keyword"}
                 }
             }
         }
@@ -160,12 +160,6 @@ def index():
         else:
             return "No matching model found."
     return render_template('index.html')
-
-
-@app.route('/get_python_file', methods=['POST'])
-def get_python_file():
-    model_name = request.form.get('model_name')
-    return model_name
 
 @app.route('/model/<model_name>')
 def display_model(model_name):
