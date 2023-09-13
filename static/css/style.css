@@ -187,6 +187,11 @@ h6 {
 /* Style for the selected JSON data */
 #selectedModelContainer {
   white-space: pre-wrap;
+  margin-bottom: 25px;
+}
+
+#selectedAssetContainer {
+  white-space: pre-wrap;
 }
 
 .checkbox-container-new {
