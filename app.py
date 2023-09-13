@@ -52,7 +52,7 @@ if not es.indices.exists(index=index_name):
 
 
 def load_models(es):
-    model_folder = 'jsonModels'
+    model_folder = r'C:\Users\dubey\IdeaProjects\DS-ModelCatalog-Implementation\jsonModels'
     models = []  
     for filename in os.listdir(model_folder):
         if filename.endswith('.json'):
@@ -170,7 +170,9 @@ def index():
             return "No matching model found."
     return render_template('index.html')
 
-
+@app.route('/<model_name>', methods=['GET', 'POST'])
+def selection():
+    return render_template(index.html)
 @app.route('/model/<model_name>')
 def display_model(model_name):
     # Load all models from the 'jsonModels' folder
@@ -184,6 +186,8 @@ def display_model(model_name):
             break
 
     if matching_model:
+        show = jsonify(matching_model)
+        print(show)
         return jsonify(matching_model)
     else:
         return "Model not found."
@@ -194,19 +198,7 @@ def get_asset(model_name):
     model = model_name.replace(" ID ", "-")
     new_model = model.lower()
     print(new_model)
-    table = PrettyTable()
     asset = get_record(new_model)
-    table.field_names = ["Name", "Age", "City"]
-
-    # Add data
-    table.add_row(["Alice", 28, "New York"])
-    table.add_row(["Bob", 32, "Los Angeles"])
-    table.add_row(["Charlie", 22, "Chicago"])
-
-    # Convert the PrettyTable to a string
-    table_string = table.get_string()
-
-    print(table_string)
     asset = asset.decode("utf-8")
     asset_json = json.dumps(asset, indent=4)
     return asset
