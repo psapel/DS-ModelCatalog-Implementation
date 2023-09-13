@@ -44,6 +44,20 @@ h5 {
 }
 
 
+h6 {
+  font-family: Calibri;
+  font-size: 14px; /* Reduce the font size for a less narrow appearance */
+  text-align: center;
+  color: grey;
+  margin-top: -10px;
+  margin-left: 0; /* Remove the margin-left to make it a column */
+  border-width: 5px;
+  box-sizing: border-box;
+  display: block; /* Change the display property to block to make it a column */
+  width: 100%; /* Increase the width for a longer appearance */
+  height: 60px;
+}
+
 .container {
   display: flex;
   flex-direction: row;
@@ -129,7 +143,6 @@ h5 {
   margin-left: -0.35%;
 }
 
-
 .image{
   display:block;
   margin-left: 190px;
@@ -138,3 +151,92 @@ h5 {
  margin-top:40px;
 }
 
+.container-column-1 {
+  display: flex;
+  margin-left: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  /* Set the container-columns to have the same height */
+  width: 100%;
+  max-width: 500px; /* Save the max-width value for later use */
+}
+
+.set {
+  background-color: rgb(232, 235, 239);
+  padding: 15px;
+  border: none;
+  margin-bottom: 10px;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+
+/* Style for the grey box */
+.grey-box {
+  background-color: #f2f2f2;
+  padding: 20px;
+  margin-top: -70px;
+  margin-left: 500px; /* Adjust the margin-left to align with the container */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  display: none;
+  width: 500px; /* Adjust the width to make it more narrow */
+}
+
+/* Style for the selected JSON data */
+#selectedModelContainer {
+  white-space: pre-wrap;
+}
+
+.checkbox-container-new {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-grow: 1;
+  padding-top: 5px; 
+  margin-top: -5px;
+}
+
+.checkbox-container-new label {
+  color: gray;
+  padding: 5px;
+  margin-right: 10px;
+  border-radius: 4px;
+  margin-top: -75px;
+}
+
+.checkbox-container-new input[type="checkbox"] {
+  display: none;
+}
+
+.checkbox-container-new input[type="checkbox"] + label:before {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 5px;
+  border: 2px solid gray;
+  border-radius: 2px;
+  vertical-align: middle;
+  background-color: white;
+}
+
+.checkbox-container-new input[type="checkbox"]:checked + label:before {
+  background-color: gray;
+}
+
+.submit-button-new {
+  width: 100%; /* Make the button width match the container's width */
+  max-width: 900px; /* Use the same max-width as defined in the .container class */
+  /* Reduce the max-width if needed */
+  padding: 10px 50px; /* Adjust the padding to give the button some space around the text */
+  background-color: #00354e; /* Set the background color to a suitable color */
+  color: #fff; /* Set the text color to white */
+  border: none; /* Remove the button border if you don't want it */
+  margin-left: 260px;
+  margin-right: 1100px;
+  margin-top: -66px;
+  height: 30px;
+  text-align: center;
+}

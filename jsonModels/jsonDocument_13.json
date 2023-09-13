@@ -1,7 +1,7 @@
 {
   "_id": "64f229ac26c4757f156eb8b3",
   "GrahamNotation": {
-    "name": "Model 48",
+    "name": "Model ID 48",
     "https://www.iop.rwth-aachen.de/PPC/1/1/machineEnvironment": "https://www.iop.rwth-aachen.de/PPC/1/1/parallelMachines",
     "https://www.iop.rwth-aachen.de/PPC/1/1/schedulingConstraints": "https://www.iop.rwth-aachen.de/PPC/1/1/maschEligibility",
     "https://www.iop.rwth-aachen.de/PPC/1/1/schedulingObjectiveFunction": [

@@ -174,7 +174,7 @@ def display_model(model_name):
             break
 
     if matching_model:
-        return render_template('model.html', selected_model=matching_model)
+        return jsonify(matching_model)
     else:
         return "Model not found."
 

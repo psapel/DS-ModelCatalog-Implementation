@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <h1>Selected Model</h1>
+    <h1>Model Catalogue</h1>
     <h5>Scheduling Models for the Injection Molding domain</h5>
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
     <meta charset="UTF-8">
@@ -9,12 +9,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">  
 </head>
 <body>
-    <div class="container-column">
-        <div class="container-column">
+    <div class="container-column-1">
+        <div class="container-column-1">
             {% for selected_model in selected_models %}
             <div class="set">
                 <h6>{{ selected_model["name"] }}</h6>
-                <div class="checkbox-container">
+                <div class="checkbox-container-new">
                     <input type="checkbox" name="selected_model" value="{{ selected_model["name"] }}" id="selected_model_{{ loop.index }}">
                     <label for="selected_model_{{ loop.index }}">{{ selected_model["name"] }}</label>
                 </div>
@@ -23,18 +23,34 @@
         </div>
     </div>
     <div class="button-container">
-        <button onclick="openModel()">Open Model</button>
+        <button type="button" class="submit-button-new" onclick="displaySelectedModel()">Details</button>
     </div>
 
-    <pre id="output" style="display: none;"></pre>
+    <!-- Grey box for displaying the JSON data -->
+    <div id="jsonBox" class="grey-box">
+        <h2>Model Metadata</h2>
+        <pre id="selectedModelContainer"></pre>
+    </div>
 
     <script>
-        function openModel() {
+        function displaySelectedModel() {
             var checkbox = document.querySelector("input[name='selected_model']:checked");
 
             if (checkbox) {
                 var selectedModelName = checkbox.value;
-                window.open("/model/" + selectedModelName, "_blank");
+
+                // Make an AJAX request to retrieve the selected JSON data
+                fetch("/model/" + selectedModelName)
+                    .then(response => response.text())
+                    .then(data => {
+                        // Update the content of the pre element with the received data
+                        document.getElementById('selectedModelContainer').textContent = data;
+                        // Show the grey box
+                        document.getElementById('jsonBox').style.display = 'block';
+                    })
+                    .catch(error => {
+                        console.error("Error fetching data:", error);
+                    });
             } else {
                 window.alert("No model selected");
             }
