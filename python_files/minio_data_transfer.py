@@ -70,7 +70,7 @@ def get_record(bucket_name):
         response = new_minio.get_object(bucket_name, 'data.json')
         print("Data Downloaded!!")
     except Exception as e:
-        print(f"Error uploading data: {e}")
+        print(f"Error Downloading data: {e}")
 
     return response.data
 

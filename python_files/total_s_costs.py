@@ -44,12 +44,16 @@ def total_order(model_name):
             3: {i: (u[i] >= 1, f"eq4_{i}") for i in range(1, N)},  # Constraint (4)
             4: {i: (u[i] <= N - 1, f"eq5_{i}") for i in range(1, N)},  # Constraint (4)
             }
-    result = ""
+    result_temp = ""
+    var1 = 0
     m += objs[0]
     for keys1 in cons:
         for keys2 in cons[keys1]: m += cons[keys1][keys2]
         if dispmodel == "y":
             print("Model --- \n", m)
+            if var1 == 0:
+                result_temp = result_temp + "Model : \n" + m.name + "\n\n"
+                var1 = 1
         if solve == "y":
             # result = m.solve(op.PULP_CBC_CMD(timeLimit=None))
             # print("Status --- \n", op.LpStatus[result])
@@ -66,8 +70,9 @@ def total_order(model_name):
         count = count + 1
 
     job_dict = numberToJobName(result, job_names)
-    result = str(job_dict)
-    return result
+    result_temp = result_temp + "Optimal Job Order: \n"
+    result_temp = result_temp + str(job_dict)
+    return result_temp
 
 
 if __name__ == '__main__':
