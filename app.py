@@ -7,6 +7,7 @@ from prettytable import PrettyTable
 from minio import Minio
 
 from python_files.minio_data_transfer import get_record
+from python_files.total_s_costs import total_order
 
 new_minio = Minio(
     "137.226.188.114:32763",
@@ -53,7 +54,7 @@ if not es.indices.exists(index=index_name):
 
 def load_models(es):
     model_folder = r'C:\Users\dubey\IdeaProjects\DS-ModelCatalog-Implementation\jsonModels'
-    models = []  
+    models = []
     for filename in os.listdir(model_folder):
         if filename.endswith('.json'):
             model_path = os.path.join(model_folder, filename)
@@ -170,9 +171,15 @@ def index():
             return "No matching model found."
     return render_template('index.html')
 
-@app.route('/<model_name>', methods=['GET', 'POST'])
+
+@app.route('/test/', methods=['GET', 'POST'])
 def selection():
-    return render_template(index.html)
+    x = 0
+    models_list = request.form.getlist('selected_model')
+    print(models_list)
+    return render_template('execution.html', models_list=models_list)
+
+
 @app.route('/model/<model_name>')
 def display_model(model_name):
     # Load all models from the 'jsonModels' folder
@@ -202,6 +209,14 @@ def get_asset(model_name):
     asset = asset.decode("utf-8")
     asset_json = json.dumps(asset, indent=4)
     return asset
+
+@app.route('/execution/<model_name>')
+def get_execution(model_name):
+    model = model_name.replace(" ID ", "-")
+    new_model = model.lower()
+    print(new_model)
+    job_order = total_order(new_model)
+    return job_order
 
 
 @app.route('/images/<filename>')

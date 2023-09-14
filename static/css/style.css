@@ -131,6 +131,13 @@ h6 {
   margin-top: 20px; /* Adjust the margin to create some space between the button and other elements */
 }
 
+.button-container-1 {
+  position: fixed; /* Position the container relative to the viewport */
+  bottom: 0; /* Align the container to the bottom */
+  right: 0; /* Align the container to the right */
+  margin: 20px; /* Add some margin for spacing */
+}
+
 .submit-button {
   width: 86.5%; /* Make the button width match the container's width */
   max-width: 983px; /* Use the same max-width as defined in the .container class */
@@ -141,6 +148,19 @@ h6 {
   border: none; /* Remove the button border if you don't want it */
   margin-right:1%;
   margin-left: -0.35%;
+}
+
+.submit-button-1 {
+  width: 86.5%; /* Make the button width match the container's width */
+  max-width: 983px; /* Use the same max-width as defined in the .container class */
+  /* Reduce the max-width if needed */
+  padding: 5px 20px; /* Adjust the padding to give the button some space around the text */
+  background-color: #00354e; /* Set the background color to a suitable color */
+  color: #fff; /* Set the text color to white */
+  border: none; /* Remove the button border if you don't want it */
+  margin-right:1%;
+  margin-left: -0.35%;
+  display: none;
 }
 
 .image{
@@ -195,6 +215,27 @@ h6 {
   width: 500px; /* Adjust the width to make it more narrow */
 }
 
+.red-box {
+  background-color: #f2f2f2;
+  padding: 20px;
+  margin-top: -20px;
+  margin-left: 200px; /* Adjust the margin-left to align with the container */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  display: none;
+  width: 500px; /* Adjust the width to make it more narrow */
+}
+
+.yellow-box {
+  background-color: #f2f2f2;
+  padding: 20px;
+  margin-top: -20px;
+  margin-left: 50px; /* Adjust the margin-left to align with the container */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  display: none;
+  width: 500px; /* Adjust the width to make it more narrow */
+}
 .flex-container {
   display: flex;
   justify-content: flex-start; /* Adjust the spacing between the boxes */
@@ -207,6 +248,16 @@ h6 {
 
 #selectedAssetContainer {
   white-space: pre-wrap;
+}
+
+#selectedJobContainer {
+  white-space: pre-wrap;
+  margin-bottom: 25px;
+}
+
+#selectedExecutionContainer {
+  white-space: pre-wrap;
+  margin-bottom: 25px;
 }
 
 .checkbox-container-new {

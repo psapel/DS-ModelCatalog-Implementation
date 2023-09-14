@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <h1>Model Catalogue</h1>
+    <h5>Execution of Models</h5>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">  
+</head>
+<body>
+            {% for model in models_list %}
+            <div class="flex-container">
+            <!-- Grey box for displaying the JSON data -->
+            <div id="test" class="red-box">
+                <h2>List of Jobs in the {{ model }}</h2>
+                <pre id="selectedJobContainer">{{ model }}</pre>
+            </div>
+            <br>
+            <br>
+            <!-- Grey box for displaying the JSON data -->
+            <div id="test1" class="yellow-box">
+                <h2>Optimal Job Order of {{ model }}</h2>
+                <pre id="selectedExecutionContainer"></pre>
+            </div>
+            </div>
+            {% endfor %}
+    <script>
+        var model = document.getElementById('selectedJobContainer').textContent
+                fetch("/underlying-asset/" + model)
+                    .then(response => response.text())
+                    .then(data => {
+                        // document.getElementById('selectedAssetContainer').textContent = data
+                        document.getElementById('test').style.display = 'block';
+
+                        // Parse the JSON data
+                        var tableData = JSON.parse(data);
+
+                        // Create an HTML table
+                        var table = "<table border='1'><tr><th>Job</th><th>Duration</th><th>Quantity</th><th>State</th></tr>";
+
+                        for (var i = 0; i < tableData.length; i++) {
+                            table += "<tr><td>" + tableData[i].Reference + "</td><td>" + tableData[i].Duration + "</td><td>" + tableData[i].Quantity + "</td><td>" + tableData[i].State + "</td></tr>";
+                        }
+
+                        table += "</table>";
+
+                        // Set the content of the <pre> element to the HTML table
+                        document.getElementById('selectedJobContainer').innerHTML = table;                    })
+                    .catch(error => {
+                        console.error("Error fetching data:", error);
+                    });
+                fetch("/execution/" + model)
+                    .then(response => response.text())
+                    .then(data => {
+                        // Update the content of the pre element with the received data
+                        document.getElementById('selectedExecutionContainer').textContent = data;
+                        //var jsonData = JSON.parse(data)
+                        //var formattedJson = JSON.stringify(jsonData, null, 4);
+                        //document.getElementById('selectedExecutionContainer').textContent = formattedJson
+                        // Show the grey box
+                        document.getElementById('test1').style.display = 'block';
+                    })
+                    .catch(error => {
+                        console.error("Error fetching data:", error);
+                    });
+    </script>
+</body>
+</html>

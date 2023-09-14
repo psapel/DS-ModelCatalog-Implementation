@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">  
 </head>
 <body>
+    <form method="POST" action="/test/">
     <div class="container-column-1">
         <div class="container-column-1">
             {% for selected_model in selected_models %}
@@ -37,6 +38,9 @@
     <div id="asset" class="black-box">
         <h2>Underlying Asset</h2>
         <pre id="selectedAssetContainer"></pre>
+    </div>
+    <div class="button-container-1">
+        <button id= "execute" type="submit" class="submit-button-1">Execute Model</button>
     </div>
     </div>
     <script>
@@ -84,10 +88,12 @@
                     .catch(error => {
                         console.error("Error fetching data:", error);
                     });
+                document.getElementById('execute').style.display = 'block';
             } else {
                 window.alert("No model selected");
             }
         }
     </script>
+    </form>
 </body>
 </html>
