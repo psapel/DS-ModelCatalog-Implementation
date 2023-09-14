@@ -66,7 +66,7 @@ h6 {
   justify-content: center;
   margin-right: auto;
   margin-left: auto;
-  height: 420px; /* Set a fixed height for the containers (adjust the value as needed) */
+  height: 480px; /* Set a fixed height for the containers */
   width: 100%;
   max-width: 1000px; /* Save the max-width value for later use */
 }
@@ -136,8 +136,8 @@ h6 {
   max-width: 983px; /* Use the same max-width as defined in the .container class */
   /* Reduce the max-width if needed */
   padding: 5px 20px; /* Adjust the padding to give the button some space around the text */
-  background-color: #00354e; /* Set the background color to a suitable color */
-  color: #fff; /* Set the text color to white */
+  background-color: #00354e; 
+  color: #fff; 
   border: none; /* Remove the button border if you don't want it */
   margin-right:1%;
   margin-left: -0.35%;
@@ -157,9 +157,8 @@ h6 {
   display: flex;
   justify-content: center;
   align-items: stretch;
-  /* Set the container-columns to have the same height */
   width: 100%;
-  max-width: 500px; /* Save the max-width value for later use */
+  max-width: 500px;
 }
 
 .set {
@@ -169,24 +168,6 @@ h6 {
   margin-bottom: 10px;
   align-items: flex-start;
   justify-content: center;
-}
-
-
-/* Style for the grey box */
-.grey-box {
-  background-color: #f2f2f2;
-  padding: 20px;
-  margin-top: -70px;
-  margin-left: 500px; /* Adjust the margin-left to align with the container */
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  display: none;
-  width: 500px; /* Adjust the width to make it more narrow */
-}
-
-/* Style for the selected JSON data */
-#selectedModelContainer {
-  white-space: pre-wrap;
 }
 
 .checkbox-container-new {
@@ -226,14 +207,31 @@ h6 {
   background-color: gray;
 }
 
+/* Style for the grey box */
+.grey-box {
+  background-color: #f2f2f2;
+  padding: 20px;
+  margin-top: -70px;
+  margin-left: 500px; /* Adjust the margin-left to align with the container */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  display: none;
+  width: 500px; /* Adjust the width to make it more narrow */
+}
+
+/* Style for the selected JSON data */
+#selectedModelContainer {
+  white-space: pre-wrap;
+}
+
 .submit-button-new {
   width: 100%; /* Make the button width match the container's width */
   max-width: 900px; /* Use the same max-width as defined in the .container class */
   /* Reduce the max-width if needed */
   padding: 10px 50px; /* Adjust the padding to give the button some space around the text */
   background-color: #00354e; /* Set the background color to a suitable color */
-  color: #fff; /* Set the text color to white */
-  border: none; /* Remove the button border if you don't want it */
+  color: #fff; 
+  border: none; 
   margin-left: 260px;
   margin-right: 1100px;
   margin-top: -66px;
