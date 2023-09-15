@@ -55,21 +55,18 @@ def total_order(model_name):
                 result_temp = result_temp + "Model : \n" + m.name + "\n\n"
                 var1 = 1
         if solve == "y":
-            # result = m.solve(op.PULP_CBC_CMD(timeLimit=None))
-            # print("Status --- \n", op.LpStatus[result])
+            result = m.solve(op.PULP_CBC_CMD(timeLimit=None, msg=True))
+            print("Status --- \n", op.LpStatus[result])
             if dispresult == "y":
-                # print("Objective --- \n", op.value(m.objective))
+                print("Objective --- \n", op.value(m.objective))
                 result = [[variables.name, 0] for variables in m.variables() if
                           variables.varValue != 0]
-                # print("Decision --- \n", [[variables.name,variables.varValue] for variables in m.variables() if variables.varValue!=0])
+                print("Decision --- \n",
+                      [[variables.name, variables.varValue] for variables in m.variables() if variables.varValue != 0])
     [(i, j) for i in range(N) for j in range(N) if op.value(x[i, j]) == 1]
 
-    count = 0
-    for val in result:
-        val[1] = count % 5
-        count = count + 1
-
     job_dict = numberToJobName(result, job_names)
+    print("The optimal job order is: ", job_dict)
     result_temp = result_temp + "Optimal Job Order: \n"
     result_temp = result_temp + str(job_dict)
     return result_temp

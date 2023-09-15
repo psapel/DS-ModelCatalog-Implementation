@@ -8,6 +8,7 @@ from minio import Minio
 
 from python_files.minio_data_transfer import get_record
 from python_files.total_s_costs import total_order
+from python_files.odoo_connect import connect
 
 new_minio = Minio(
     "137.226.188.114:32763",
@@ -205,8 +206,8 @@ def get_asset(model_name):
     model = model_name.replace(" ID ", "-")
     new_model = model.lower()
     print(new_model)
-    asset = get_record(new_model)
-    asset = asset.decode("utf-8")
+    asset = connect(new_model)
+    # asset = asset.decode("utf-8")
     asset_json = json.dumps(asset, indent=4)
     return asset
 
