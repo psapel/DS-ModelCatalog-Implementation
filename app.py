@@ -173,7 +173,7 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/test/', methods=['GET', 'POST'])
+@app.route('/model-execution/', methods=['GET', 'POST'])
 def selection():
     x = 0
     models_list = request.form.getlist('selected_model')
