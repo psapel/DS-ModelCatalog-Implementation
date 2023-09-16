@@ -59,7 +59,8 @@ def connect(model_id):
     jobs = (models.execute_kw(db, uid, password,
                               model_value, 'search_read',
                               [[['state', '=', state]]],
-                              {'fields': ['name', 'production_duration_expected', 'date_planned_finished', 'product_id', 'product_uom_qty', 'state', 'company_id']}))
+                              {'fields': ['name', 'production_duration_expected', 'date_planned_finished', 'product_id',
+                                          'product_uom_qty', 'state', 'company_id']}))
 
     # Building a deepcopy to prohibit errors in original file
     jobs_copy = copy.deepcopy(jobs)
@@ -143,6 +144,17 @@ def connect(model_id):
     # documentation: https://www.odoo.com/documentation/15.0/developer/misc/api/odoo.html
 
 
+def display_job_contents(model_ids):
+    jobs = connect(model_ids)
+    modified_jobs = jobs
+    for i in range(0, len(modified_jobs)):
+        del modified_jobs[i]['Company']
+        del modified_jobs[i]['Product']
+
+    return modified_jobs
+
+
 if __name__ == '__main__':
     model_id = "model-47"
-    connect(model_id)
+    result = connect(model_id)
+    print(result)

@@ -3,28 +3,28 @@ import json
 import pulp as op
 import itertools as it
 from python_files.numberToJobName import numberToJobName
+from python_files.odoo_connect import connect
 from python_files.minio_data_transfer import get_record
 
 
 def total_order(model_name):
     s = {"order_0": {"order_0": 0, "order_1": 0, "order_2": 0, "order_3": 0, "order_4": 0},
          "order_1": {"order_0": 0, "order_1": 0, "order_2": 2, "order_3": 5, "order_4": 3},
-         "order_2": {"order_0": 0, "order_1": 2, "order_2": 0, "order_3": 3, "order_4": 2},
-         "order_3": {"order_0": 0, "order_1": 6, "order_2": 4, "order_3": 0, "order_4": 1},
-         "order_4": {"order_0": 0, "order_1": 1, "order_2": 3, "order_3": 2, "order_4": 0}}
+         "order_2": {"order_0": 0, "order_1": 2, "order_2": 0, "order_3": 3, "order_4": 2}}
 
-    response = get_record(model_name)
-    asset = response.decode("utf-8")
-    asset_json = json.loads(asset)
+    response = connect(model_name)
     p = []  # Processing time of each job
     job_names = []
-    for item in asset_json:
-        current_job = item.get('Reference')
-        current_duration = item.get('Duration')
+    for i in range(0, len(response)):
+        current_job = response[i]['Reference']
+        current_duration = response[i]['Duration']
         if current_job:
             job_names.append(current_job)
         if current_duration:
             p.append(current_duration)
+    result_temp = ""
+    result_temp = result_temp + "List of Jobs : "
+    result_temp = result_temp + str(job_names) + "\n \n"
 
     N = len(p)  # Set of jobs
     dispmodel = "y"
@@ -44,30 +44,63 @@ def total_order(model_name):
             3: {i: (u[i] >= 1, f"eq4_{i}") for i in range(1, N)},  # Constraint (4)
             4: {i: (u[i] <= N - 1, f"eq5_{i}") for i in range(1, N)},  # Constraint (4)
             }
-    result_temp = ""
+
     var1 = 0
+    m += objs[0]
+    M = 1000  # BigM constraint
+    w = [0.125, 0.125, 0.125]
+    J = range(len(p))
+    K = range(len(J))
+    y = {k: op.LpVariable(f"y{k}", 0, None, op.LpContinuous) for k in K}
+    C = {j: op.LpVariable(f"C{j}", 0, None, op.LpContinuous) for j in J}
+    u = {(j, k): op.LpVariable(f"u{j}{k}", 0, 1, op.LpBinary) for j, k in it.product(J, K)}  # (4.6
+    objs = {0: sum(w[k] * y[k] for k in K)}
+    cons = {0: {j: (sum(u[(j, k)] for k in K) == 1, f"eq1_{j}") for j in J},  # (4.1)
+            1: {k: (sum(u[(j, k)] for j in J) == 1, f"eq2_{k}") for k in K},  # (4.2)
+            2: {0: (y[0] >= sum(p[j] * u[(j, 0)] for j in J), "eq3_")},  # (4.3)
+            3: {k: (y[k] >= y[k - 1] + sum(p[j] * u[(j, k)] for j in J), f"eq4_{k}") for k in K if k != 0},  # (4.4)
+            4: {k: (y[k] >= 0, f"eq5_{k}") for k in K},  # (4.5)
+            5: {(j, k): (C[j] >= y[k] - M * (1 - u[(j, k)]), f"eq6_{j}{k}") for k in K for j in J},  # (4.10)
+            6: {j: (C[j] >= 0, f"eq7_{j}") for j in J}  # (4.11)
+            }
     m += objs[0]
     for keys1 in cons:
         for keys2 in cons[keys1]: m += cons[keys1][keys2]
         if dispmodel == "y":
             print("Model --- \n", m)
-            if var1 == 0:
-                result_temp = result_temp + "Model : \n" + m.name + "\n\n"
-                var1 = 1
+            # result_temp = result_temp + "Model --- \n" + str(m) + "\n"
         if solve == "y":
-            result = m.solve(op.PULP_CBC_CMD(timeLimit=None, msg=True))
+            result = m.solve(op.PULP_CBC_CMD(timeLimit=None))
             print("Status --- \n", op.LpStatus[result])
-            if dispresult == "y":
+            # result_temp = result_temp + "Status --- \n" + op.LpStatus[result] + "\n"
+            if dispresult == "y" and op.LpStatus[result] == 'Optimal':
                 print("Objective --- \n", op.value(m.objective))
-                result = [[variables.name, 0] for variables in m.variables() if
-                          variables.varValue != 0]
+                # result_temp = result_temp + "Objective --- \n" + str(op.value(m.objective)) + "\n"
                 print("Decision --- \n",
-                      [[variables.name, variables.varValue] for variables in m.variables() if variables.varValue != 0])
-    [(i, j) for i in range(N) for j in range(N) if op.value(x[i, j]) == 1]
+                      [(variables.name, variables.varValue) for variables in m.variables() if variables.varValue != 0])
+                # result_temp = result_temp + "Decision --- \n" + str([(variables.name, variables.varValue) for variables in m.variables() if variables.varValue != 0]) + "\n"
 
-    job_dict = numberToJobName(result, job_names)
-    print("The optimal job order is: ", job_dict)
-    result_temp = result_temp + "Optimal Job Order: \n"
+    # replace m.name with str(m)
+    result_temp = result_temp + "Model -- " + m.name + "\n\n"
+    result_temp = result_temp + "Status -- " + op.LpStatus[result] + "\n\n"
+    result_temp = result_temp + "Objective -- " + str(op.value(m.objective)) + "\n\n"
+    result_temp = result_temp + "Decision -- " + str(
+        [(variables.name, variables.varValue) for variables in m.variables() if variables.varValue != 0]) + "\n\n"
+
+    seq = []
+    for k in K:
+        for j in J:
+            if u[(j, k)].varValue == 1:
+                seq.append(j + 1)
+    print(seq)
+    print(m.name)
+    job_dict = []
+    for item in seq:
+        indv_job = []
+        indv_job.append("u" + str(item))
+        indv_job.append(job_names[item - 1])
+        job_dict.append(indv_job)
+    result_temp = result_temp + "Optimal Job Order: "
     result_temp = result_temp + str(job_dict)
     return result_temp
 
