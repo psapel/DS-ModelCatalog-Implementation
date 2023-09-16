@@ -6,8 +6,8 @@ import json
 from prettytable import PrettyTable
 from minio import Minio
 
-from python_files.minio_data_transfer import get_record
-from python_files.total_s_costs import total_order
+from python_files.execution_logs import total_execution
+from python_files.model_execution import total_order
 from python_files.odoo_connect import connect
 
 new_minio = Minio(
@@ -220,6 +220,13 @@ def get_execution(model_name):
     job_order = total_order(new_model)
     return job_order
 
+@app.route('/execution_logs/<model_name>')
+def get_execution_logs(model_name):
+    model = model_name.replace(" ID ", "-")
+    new_model = model.lower()
+    print(new_model)
+    logs = total_execution(new_model)
+    return logs
 
 @app.route('/images/<filename>')
 def serve_image(filename):

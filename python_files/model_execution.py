@@ -1,10 +1,10 @@
 import json
-
+import time
 import pulp as op
 import itertools as it
-from python_files.numberToJobName import numberToJobName
+
 from python_files.odoo_connect import connect
-from python_files.minio_data_transfer import get_record
+
 
 
 def total_order(model_name):
@@ -24,7 +24,7 @@ def total_order(model_name):
             p.append(current_duration)
     result_temp = ""
     result_temp = result_temp + "List of Jobs : "
-    result_temp = result_temp + str(job_names) + "\n \n"
+    result_temp = result_temp + str(job_names) + "\n\n"
 
     N = len(p)  # Set of jobs
     dispmodel = "y"
@@ -81,8 +81,8 @@ def total_order(model_name):
                 # result_temp = result_temp + "Decision --- \n" + str([(variables.name, variables.varValue) for variables in m.variables() if variables.varValue != 0]) + "\n"
 
     # replace m.name with str(m)
-    result_temp = result_temp + "Model -- " + m.name + "\n\n"
-    result_temp = result_temp + "Status -- " + op.LpStatus[result] + "\n\n"
+    result_temp = result_temp + "Model name -- " + m.name + "\n\n"
+    result_temp = result_temp + "Status of solution -- " + op.LpStatus[result] + "\n\n"
     result_temp = result_temp + "Objective -- " + str(op.value(m.objective)) + "\n\n"
     result_temp = result_temp + "Decision -- " + str(
         [(variables.name, variables.varValue) for variables in m.variables() if variables.varValue != 0]) + "\n\n"
@@ -108,4 +108,6 @@ def total_order(model_name):
 if __name__ == '__main__':
     name = "model-47"
     results = total_order(name)
+    test_result = results.split("\n\n")
+    print(test_result)
     print(results)

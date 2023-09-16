@@ -20,11 +20,15 @@
             <br>
             <!-- Grey box for displaying the JSON data -->
             <div id="test1" class="yellow-box">
-                <h2>Execution of {{ model }}</h2>
+                <h2>Execution results of {{ model }}</h2>
                 <pre id="selectedExecutionContainer"></pre>
+                <pre id="selectedExecutionLogContainer">{{ model }}</pre>
             </div>
             </div>
             {% endfor %}
+            <div class="container-button">
+                <button class="bottom-center-button" onclick="openNewTab()">See detailed execution steps</button>
+            </div>
     <script>
         var model = document.getElementById('selectedJobContainer').textContent
                 fetch("/underlying-asset/" + model)
@@ -64,6 +68,37 @@
                     .catch(error => {
                         console.error("Error fetching data:", error);
                     });
+        function openNewTab() {
+            var model_name = document.getElementById('selectedExecutionLogContainer').textContent
+            var logs;
+            fetch("/execution_logs/" + model_name)
+                    .then(response => response.text())
+                    .then(data => {
+                        logs = JSON.parse(data)
+            // Define the message you want to display
+
+            var logWindow = window.open('', '_blank');
+            logWindow.document.write('<html><head><title>Execution Logs</title></head><body>');
+            logWindow.document.write('<style>');
+            logWindow.document.write('body { background-color: black; color: white; font-size: 16px;}');
+            logWindow.document.write('li { margin-bottom: 10px; list-style: none;}');
+            logWindow.document.write('h1 { margin-left: 35px; }');
+            logWindow.document.write('</style>');
+            // Display logs in the new window
+            logWindow.document.write('<h1>Execution Logs of the Model</h1>');
+            logWindow.document.write('<ul>');
+            var val = ""
+
+            for (var i = 0; i < logs.length; i++) {
+                val = val + logs[i]
+                logWindow.document.write('<li>' + logs[i] + '</li>');
+            }
+            logWindow.document.write('</ul>');
+
+            logWindow.document.write('</body></html>');
+            logWindow.document.close();
+            });
+        }
     </script>
 </body>
 </html>

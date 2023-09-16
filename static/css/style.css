@@ -43,6 +43,17 @@ h5 {
   box-sizing: border-box;
 }
 
+p{
+  font-family: Consolas;
+  font-size: 12px;
+  text-align: left;
+  color: black;
+  margin-top: -30px;
+  margin-left: 200px; /*10% for small, 200px for large */
+  border-width: 2px;
+  box-sizing: border-box;
+}
+
 
 h6 {
   font-family: Calibri;
@@ -260,6 +271,10 @@ h6 {
   margin-bottom: 25px;
 }
 
+#selectedExecutionLogContainer {
+  display: none;
+}
+
 .checkbox-container-new {
   display: flex;
   align-items: center;
@@ -310,4 +325,23 @@ h6 {
   margin-top: -66px;
   height: 30px;
   text-align: center;
+}
+
+.container-button {
+    position: relative;
+    height: 100%;
+}
+
+/* Style the button as needed */
+.bottom-center-button {
+    position: absolute;
+    bottom: -80px; /* Adjust this value to control the distance from the bottom */
+    left: 75%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    background-color: #00354e;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
 }
