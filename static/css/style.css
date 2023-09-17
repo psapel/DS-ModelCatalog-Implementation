@@ -73,13 +73,12 @@ h6 {
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  /* Set all containers to have the same height */
   justify-content: center;
   margin-right: auto;
   margin-left: auto;
-  height: 420px; /* Set a fixed height for the containers (adjust the value as needed) */
+  height: 480px; 
   width: 100%;
-  max-width: 1000px; /* Save the max-width value for later use */
+  max-width: 1000px; 
 }
 
 .container-column {
@@ -152,10 +151,9 @@ h6 {
 .submit-button {
   width: 86.5%; /* Make the button width match the container's width */
   max-width: 983px; /* Use the same max-width as defined in the .container class */
-  /* Reduce the max-width if needed */
   padding: 5px 20px; /* Adjust the padding to give the button some space around the text */
-  background-color: #00354e; /* Set the background color to a suitable color */
-  color: #fff; /* Set the text color to white */
+  background-color: #00354e;
+  color: #fff;
   border: none; /* Remove the button border if you don't want it */
   margin-right:1%;
   margin-left: -0.35%;
@@ -164,10 +162,9 @@ h6 {
 .submit-button-1 {
   width: 86.5%; /* Make the button width match the container's width */
   max-width: 983px; /* Use the same max-width as defined in the .container class */
-  /* Reduce the max-width if needed */
   padding: 5px 20px; /* Adjust the padding to give the button some space around the text */
-  background-color: #00354e; /* Set the background color to a suitable color */
-  color: #fff; /* Set the text color to white */
+  background-color: #00354e;
+  color: #fff;
   border: none; /* Remove the button border if you don't want it */
   margin-right:1%;
   margin-left: -0.35%;
@@ -317,9 +314,9 @@ h6 {
   max-width: 900px; /* Use the same max-width as defined in the .container class */
   /* Reduce the max-width if needed */
   padding: 10px 50px; /* Adjust the padding to give the button some space around the text */
-  background-color: #00354e; /* Set the background color to a suitable color */
-  color: #fff; /* Set the text color to white */
-  border: none; /* Remove the button border if you don't want it */
+  background-color: #00354e;
+  color: #fff;
+  border: none;
   margin-left: 260px;
   margin-right: 1100px;
   margin-top: -66px;

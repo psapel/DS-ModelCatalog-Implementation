@@ -54,7 +54,8 @@ if not es.indices.exists(index=index_name):
 
 
 def load_models(es):
-    model_folder = r'C:\Users\dubey\IdeaProjects\DS-ModelCatalog-Implementation\jsonModels'
+    model_folder = 'jsonModels'
+    #models_folder = r'C:\Users\dubey\IdeaProjects\DS-ModelCatalog-Implementation\jsonModels'
     models = []
     for filename in os.listdir(model_folder):
         if filename.endswith('.json'):
