@@ -75,7 +75,7 @@
                         var tableData = JSON.parse(data);
 
                         // Create an HTML table
-                        var table = "<table border='1'><tr><th>Reference</th><th>Duration</th><th>Company</th><th>Product</th><th>Quantity</th><th>State</th></tr>";
+                        var table = "<table border='1' class='styled-table'><tr><th>Reference</th><th>Duration</th><th>Company</th><th>Product</th><th>Quantity</th><th>State</th></tr>";
 
                         for (var i = 0; i < tableData.length; i++) {
                             table += "<tr><td>" + tableData[i].Reference + "</td><td>" + tableData[i].Duration + "</td><td>" + tableData[i].Company + "</td><td>" + tableData[i].Product + "</td><td>" + tableData[i].Quantity + "</td><td>" + tableData[i].State + "</td></tr>";

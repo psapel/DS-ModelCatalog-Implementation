@@ -252,6 +252,7 @@ h6 {
 #selectedModelContainer {
   white-space: pre-wrap;
   margin-bottom: 25px;
+  overflow-y: auto;
 }
 
 #selectedAssetContainer {
@@ -341,4 +342,25 @@ h6 {
     font-size: 16px;
     border: none;
     cursor: pointer;
+}
+
+/* Apply general styling to the table */
+.styled-table {
+  width: 100%;
+  border-collapse: collapse; /* Remove default cell spacing */
+  margin: 20px 0; /* Add margin for spacing */
+}
+
+/* Style table headers */
+.styled-table th {
+  background-color: #f2f2f2;
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Style table cells */
+.styled-table td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
 }
