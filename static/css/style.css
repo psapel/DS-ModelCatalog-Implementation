@@ -204,7 +204,7 @@ h6 {
 .grey-box {
   background-color: #f2f2f2;
   padding: 20px;
-  margin-top: -70px;
+  margin-top: -80px;
   margin-left: 500px; /* Adjust the margin-left to align with the container */
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -215,7 +215,7 @@ h6 {
 .black-box {
   background-color: #f2f2f2;
   padding: 20px;
-  margin-top: -70px;
+  margin-top: -80px;
   margin-left: 50px; /* Adjust the margin-left to align with the container */
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -253,7 +253,7 @@ h6 {
   white-space: pre-wrap;
   margin-bottom: 25px;
   overflow-y: auto;
-  font-size: 13px;
+  font-size: 14px;
   font-family: Calibri
 }
 
@@ -269,7 +269,7 @@ h6 {
 #selectedExecutionContainer {
   white-space: pre-wrap;
   margin-bottom: 25px;
-  font-size: 13px;
+  font-size: 14px;
   font-family: Calibri
 }
 
@@ -361,7 +361,7 @@ h6 {
   text-align: left;
   padding: 8px;
   border-bottom: 1px solid #ddd;
-  font-size: 13px;
+  font-size: 14px;
   font-family: Calibri
 }
 
@@ -369,6 +369,6 @@ h6 {
 .styled-table td {
   padding: 8px;
   border-bottom: 1px solid #ddd;
-  font-size: 13px;
+  font-size: 14px;
   font-family: Calibri
 }
