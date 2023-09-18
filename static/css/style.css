@@ -253,6 +253,8 @@ h6 {
   white-space: pre-wrap;
   margin-bottom: 25px;
   overflow-y: auto;
+  font-size: 13px;
+  font-family: Calibri
 }
 
 #selectedAssetContainer {
@@ -267,6 +269,8 @@ h6 {
 #selectedExecutionContainer {
   white-space: pre-wrap;
   margin-bottom: 25px;
+  font-size: 13px;
+  font-family: Calibri
 }
 
 #selectedExecutionLogContainer {
@@ -357,10 +361,14 @@ h6 {
   text-align: left;
   padding: 8px;
   border-bottom: 1px solid #ddd;
+  font-size: 13px;
+  font-family: Calibri
 }
 
 /* Style table cells */
 .styled-table td {
   padding: 8px;
   border-bottom: 1px solid #ddd;
+  font-size: 13px;
+  font-family: Calibri
 }
