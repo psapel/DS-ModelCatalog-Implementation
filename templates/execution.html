@@ -83,7 +83,7 @@
             logWindow.document.write('body { background-color: white; margin: auto; max-width: 1400px; padding: 1px;}');
             logWindow.document.write('li { margin-bottom: 10px; list-style: none;}');
             logWindow.document.write('h1 { color: rgb(149, 187, 32); font-family: Calibri; font-size: 300%; flex-direction: row; margin-left: 200px; /*10% for small, 200px for large*/ box-sizing: border-box; }');
-            logWindow.document.write('.yellow-box { background-color: #f2f2f2; padding: 20px; margin-top: -20px; margin-left: 200px; /* Adjust the margin-left to align with the container */ border: 1px solid #ddd; border-radius: 5px; display: block; width: 500px; /* Adjust the width to make it more narrow */ }')
+            logWindow.document.write('.yellow-box { background-color: #f2f2f2; padding: 20px; margin-top: -20px; margin-left: 200px; /* Adjust the margin-left to align with the container */ border: 1px solid #ddd; border-radius: 5px; display: block; width: 500px; /* Adjust the width to make it more narrow */ max-height: 600px; overflow-y: auto; }')
             logWindow.document.write('#selectedExecutionLogs { white-space: pre-wrap; margin-bottom: 25px; font-size: 14px; font-family: Calibri }')
             logWindow.document.write('</style>');
             // Display logs in the new window
@@ -96,7 +96,7 @@
                 // logWindow.document.write('<li>' + logs[i] + '</li>');
             }
             // logWindow.document.write('</ul>');
-            logWindow.document.write('<div id="test1" class="yellow-box"> <h2 id="header">Execution Logs of </h2> <pre id="selectedExecutionLogs"></pre> </div>')
+            logWindow.document.write('<div id="test1" class="yellow-box"> <h2 id="header" align="center">Execution Logs of </h2> <pre id="selectedExecutionLogs"></pre> </div>')
             var header = logWindow.document.getElementById("header")
             header.textContent = header.textContent + " " + model_name
             var preElement = logWindow.document.getElementById("selectedExecutionLogs");
