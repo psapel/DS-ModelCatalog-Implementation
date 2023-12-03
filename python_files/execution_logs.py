@@ -51,7 +51,11 @@ def total_execution(model_name):
     var1 = 0
     m += objs[0]
     M = 1000  # BigM constraint
-    w = [0.125, 0.125, 0.125]
+    # Here we need the number of weights according to the number of jobs, instad an error will occur  
+    w = []  
+    for job in range(0,N):
+        w.append(1.0) 
+    #w = [0.125, 0.125, 0.125, 0.125]
     J = range(len(p))
     K = range(len(J))
     y = {k: op.LpVariable(f"y{k}", 0, None, op.LpContinuous) for k in K}
