@@ -1,16 +1,11 @@
-import itertools as it
+def extract_data(db_values):
+    names = []
+    durations = []
 
-def preprocessing(model_name):
-    
-    response = model_name
-    p = []  # Processing time of each job
-    job_names = []
-    for i in range(0, len(response)):
-        current_job = response[i]['name']
-        current_duration = response[i]['production_duration_expected']
-        if current_job:
-            job_names.append(current_job)
-        if current_duration:
-            p.append(current_duration)
+    for entry in db_values:
+        if entry:
+            data = entry[0]  # Assuming each entry is a list with a single dictionary
+            names.append(data.get('name', ''))
+            durations.append(data.get('production_duration_expected', 0.0))
 
-    return p, job_names
+    return names, durations

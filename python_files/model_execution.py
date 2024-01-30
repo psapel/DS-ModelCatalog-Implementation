@@ -3,7 +3,7 @@ import time
 import pulp as op
 import itertools as it
 
-from python_files.odoo_connect import connect
+from odoo_connect import connect
 
 
 
