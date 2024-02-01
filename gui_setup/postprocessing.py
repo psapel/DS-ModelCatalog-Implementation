@@ -1,24 +1,23 @@
-import pulp as op
+def process_results(opt_result, job_names):
+    """
+    Get the optimal job order from the optimization result and map to job identifiers.
 
-def process_result(result, m, job_names):
-    result_temp = "Model name -- " + m.name + "\n\n"
-    result_temp += "Status of solution -- " + op.LpStatus[result] + "\n\n"
-    result_temp += "Objective -- " + str(op.value(m.objective)) + "\n\n"
-    result_temp += "Decision -- " + str(
-        [(variables.name, variables.varValue) for variables in m.variables() if variables.varValue != 0]) + "\n\n"
+    Parameters:
+    - opt_result (dict): The result dictionary obtained from the optimization model.
+    - job_names (list): List containing job identifiers.
 
-    seq = []
-    for k in K:
-        for j in J:
-            if u[(j, k)].varValue == 1:
-                seq.append(j + 1)
+    Returns:
+    - list: A list of sublists, where each sublist contains a job number with 'u' prefix and its corresponding job identifier in the optimal order.
+    """
+    if "status" in opt_result and opt_result["status"] == 'Optimal':
+        decision_variables = opt_result["decision_variables"]
+        job_order = sorted([(int(var[0][1]), int(var[0][2])) for var in decision_variables if var[0][0] == 'x' and var[1] == 1],
+                           key=lambda x: x[1])
+        optimal_order = [['u{}'.format(job_pair[0] + 1), job_names[job_pair[0]]] for job_pair in job_order]
+        print("The optimal job order is: {}".format(optimal_order))
+        return optimal_order
+    else:
+        print("No optimal solution found.")
+        return []
 
-    job_dict = []
-    for item in seq:
-        indv_job = []
-        indv_job.append("u" + str(item))
-        indv_job.append(job_names[item - 1])
-        job_dict.append(indv_job)
 
-    result_temp += "Optimal Job Order: " + str(job_dict)
-    return result_temp

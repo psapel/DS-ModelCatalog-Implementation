@@ -4,7 +4,7 @@ def extract_data(db_values):
 
     for entry in db_values:
         if entry:
-            data = entry[0]  # Assuming each entry is a list with a single dictionary
+            data = entry[0]  
             names.append(data.get('name', ''))
             durations.append(data.get('production_duration_expected', 0.0))
 

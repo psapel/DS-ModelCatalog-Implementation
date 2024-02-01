@@ -1,8 +1,7 @@
 import pulp as op
 import itertools as it
 
-def total_order_from_data(names, durations):
-    result_temp = "List of Jobs : " + str(names) + "\n\n"
+def optimization_model(durations):
 
     N = len(durations)  # Set of jobs
     dispmodel = "y"
@@ -13,9 +12,12 @@ def total_order_from_data(names, durations):
     x = {(i, j): op.LpVariable(f"x{i}{j}", 0, 1, op.LpBinary) for i, j in it.product(range(N), range(N))}
     u = {i: op.LpVariable(f"u{i}", 0, None, op.LpInteger) for i in range(1, N)}
 
-    s = {"order_0": {"order_0": 0, "order_1": 0, "order_2": 0, "order_3": 0, "order_4": 0},
-         "order_1": {"order_0": 0, "order_1": 0, "order_2": 2, "order_3": 5, "order_4": 3},
-         "order_2": {"order_0": 0, "order_1": 2, "order_2": 0, "order_3": 3, "order_4": 2}}
+    s = {"order_0": {"order_0": 9999, "order_1": 46, "order_2": 41, "order_3": 65, "order_4": 87, "order_5": 132},
+         "order_1": {"order_0": 79, "order_1": 9999, "order_2": 89, "order_3": 64, "order_4": 135, "order_5": 52},
+         "order_2": {"order_0": 117, "order_1": 94, "order_2": 9999, "order_3": 65, "order_4": 164, "order_5": 49},
+         "order_3": {"order_0": 87, "order_1": 40, "order_2": 97, "order_3": 9999, "order_4": 80, "order_5": 102},
+         "order_4": {"order_0": 192, "order_1": 24, "order_2": 112, "order_3": 181, "order_4": 9999, "order_5": 33},
+         "order_5": {"order_0": 184, "order_1": 147, "order_2": 114, "order_3": 53, "order_4": 89, "order_5": 9999}}
 
     objs = {0: sum((durations[i] + s[f"order_{i}"][f"order_{j}"]) * x[(i, j)] for i in range(N) for j in range(N) if j != i)}
     cons = {0: {j: (sum(x[(i, j)] for i in range(N) if i != j) == 1, f"eq1_{j}") for j in range(N)},  # Constraint (1)
@@ -26,48 +28,26 @@ def total_order_from_data(names, durations):
             4: {i: (u[i] <= N - 1, f"eq5_{i}") for i in range(1, N)},  # Constraint (4)
             }
 
-    var1 = 0
     m += objs[0]
-    M = 1000  # BigM constraint
-    w = [1.0] * N
-    J = range(len(durations))
-    K = range(len(J))
-    y = {k: op.LpVariable(f"y{k}", 0, None, op.LpContinuous) for k in K}
-    C = {j: op.LpVariable(f"C{j}", 0, None, op.LpContinuous) for j in J}
-    u = {(j, k): op.LpVariable(f"u{j}{k}", 0, 1, op.LpBinary) for j, k in it.product(J, K)}
-
-    objs = {0: sum(w[k] * y[k] for k in K)}
-    cons = {0: {j: (sum(u[(j, k)] for k in K) == 1, f"eq1_{j}") for j in J},  # (4.1)
-            1: {k: (sum(u[(j, k)] for j in J) == 1, f"eq2_{k}") for k in K},  # (4.2)
-            2: {0: (y[0] >= sum(durations[j] * u[(j, 0)] for j in J), "eq3_")},  # (4.3)
-            3: {k: (y[k] >= y[k - 1] + sum(durations[j] * u[(j, k)] for j in J), f"eq4_{k}") for k in K if k != 0},  # (4.4)
-            4: {k: (y[k] >= 0, f"eq5_{k}") for k in K},  # (4.5)
-            5: {(j, k): (C[j] >= y[k] - M * (1 - u[(j, k)]), f"eq6_{j}{k}") for k in K for j in J},  # (4.10)
-            6: {j: (C[j] >= 0, f"eq7_{j}") for j in J}  # (4.11)
-            }
-
-    m += objs[0]
-
     for keys1 in cons:
-        for keys2 in cons[keys1]:
+        for keys2 in cons[keys1]: 
             m += cons[keys1][keys2]
-
-    if dispmodel == "y":
-        print("Model --- \n", m)
-
-    if solve == "y":
-        result = m.solve(op.PULP_CBC_CMD(timeLimit=None))
-        print("Status --- \n", op.LpStatus[result])
-
-        if dispresult == "y" and op.LpStatus[result] == 'Optimal':
-            print("Objective --- \n", op.value(m.objective))
-            print("Decision --- \n",
-                  [(variables.name, variables.varValue) for variables in m.variables() if variables.varValue != 0])
-
-            # Extract and return the relevant information
-            objective_value = op.value(m.objective)
-            decisions = [(variables.name, variables.varValue) for variables in m.variables() if variables.varValue != 0]
-
-            return {"status": op.LpStatus[result], "objective_value": objective_value, "decisions": decisions}
-
-
+            if dispmodel == "y":
+                print("Model --- \n", str(m.name))
+            if solve == "y":
+                result = m.solve(op.PULP_CBC_CMD(timeLimit=None))
+                print("Status  --- \n", op.LpStatus[result])
+            if dispresult == "y" and op.LpStatus[result] == 'Optimal':
+                print("Objective --- \n", op.value(m.objective))
+                print("Decision --- \n", [(variables.name, variables.varValue) for variables in m.variables() if variables.varValue != 0])
+                
+             # Return relevant information
+    if op.LpStatus[result] == 'Optimal':
+        return {
+            "model" : str(m.name),
+            "status": op.LpStatus[result],
+            "objective_value": op.value(m.objective),
+            "decision_variables": [(variables.name, variables.varValue) for variables in m.variables() if variables.varValue != 0]
+        }
+    else:
+        return {"status": op.LpStatus[result]}
