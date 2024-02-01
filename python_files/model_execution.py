@@ -6,11 +6,15 @@ import itertools as it
 from python_files.odoo_connect import connect
 
 
-
+# I think the matrix must contain more parameters (order_n) where N < n and N = number of jobs from the odoo ERP 
+# The setup times are random generated values - order_n to order_n is "big", i.e., 9999
 def total_order(model_name):
-    s = {"order_0": {"order_0": 0, "order_1": 0, "order_2": 0, "order_3": 0, "order_4": 0},
-         "order_1": {"order_0": 0, "order_1": 0, "order_2": 2, "order_3": 5, "order_4": 3},
-         "order_2": {"order_0": 0, "order_1": 2, "order_2": 0, "order_3": 3, "order_4": 2}}
+    s = {"order_0": {"order_0": 9999, "order_1": 46, "order_2": 41, "order_3": 65, "order_4": 87, "order_5": 132},
+         "order_1": {"order_0": 79, "order_1": 9999, "order_2": 89, "order_3": 64, "order_4": 135, "order_5": 52},
+         "order_2": {"order_0": 117, "order_1": 94, "order_2": 9999, "order_3": 65, "order_4": 164, "order_5": 49},
+         "order_3": {"order_0": 87, "order_1": 40, "order_2": 97, "order_3": 9999, "order_4": 80, "order_5": 102},
+         "order_4": {"order_0": 192, "order_1": 24, "order_2": 112, "order_3": 181, "order_4": 9999, "order_5": 33},
+         "order_5": {"order_0": 184, "order_1": 147, "order_2": 114, "order_3": 53, "order_4": 89, "order_5": 9999}}
 
     response = connect(model_name)
     p = []  # Processing time of each job
@@ -47,6 +51,9 @@ def total_order(model_name):
 
     var1 = 0
     m += objs[0]
+    
+    '''
+    # It seem like that the following calculation was wrongly inserted here... 
     M = 1000  # BigM constraint
     # Here we need the number of weights according to the number of jobs, instad an error will occur  
     w = []  
@@ -68,6 +75,8 @@ def total_order(model_name):
             6: {j: (C[j] >= 0, f"eq7_{j}") for j in J}  # (4.11)
             }
     m += objs[0]
+    '''
+    
     for keys1 in cons:
         for keys2 in cons[keys1]: m += cons[keys1][keys2]
         if dispmodel == "y":
