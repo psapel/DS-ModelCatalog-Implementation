@@ -55,7 +55,6 @@ if not es.indices.exists(index=index_name):
 
 def load_models(es):
     model_folder = 'jsonModels'
-    #models_folder = r'C:\Users\dubey\IdeaProjects\DS-ModelCatalog-Implementation\jsonModels'
     models = []
     for filename in os.listdir(model_folder):
         if filename.endswith('.json'):
@@ -83,6 +82,7 @@ loaded_models = load_models(es)
 
 
 def find_matching_model(es, url1, url2, url3):
+    print("Received URLs:", url1, url2, url3)
     len_2 = len(url2)
     len_3 = len(url3)
 

@@ -1,11 +1,10 @@
 {
   "_id": "64f229ac26c4757f156eb8ab",
   "GrahamNotation": {
-    "name": "Model ID 40",
+    "name": "model_40",
     "https://www.iop.rwth-aachen.de/PPC/1/1/machineEnvironment": "https://www.iop.rwth-aachen.de/PPC/1/1/singleMachine",
     "https://www.iop.rwth-aachen.de/PPC/1/1/schedulingConstraints": [
-      "https://www.iop.rwth-aachen.de/PPC/1/1/seqDepSetup",
-      "https://www.iop.rwth-aachen.de/PPC/1/1/tardinessPenalty"
+      "https://www.iop.rwth-aachen.de/PPC/1/1/seqDepSetup"
     ],
     "https://www.iop.rwth-aachen.de/PPC/1/1/schedulingObjectiveFunction": [
       "https://www.iop.rwth-aachen.de/PPC/1/1/maxCompletionTime",

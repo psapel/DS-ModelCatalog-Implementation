@@ -1,7 +1,7 @@
 {
   "_id": "64f229ac26c4757f156eb8ac",
   "GrahamNotation": {
-    "name": "Model ID 41",
+    "name": "model_41",
     "https://www.iop.rwth-aachen.de/PPC/1/1/machineEnvironment": "https://www.iop.rwth-aachen.de/PPC/1/1/parallelMachines",
     "https://www.iop.rwth-aachen.de/PPC/1/1/schedulingConstraints": [
       "https://www.iop.rwth-aachen.de/PPC/1/1/seqDepSetup",
@@ -9,7 +9,7 @@
     ],
     "https://www.iop.rwth-aachen.de/PPC/1/1/schedulingObjectiveFunction": [
       "https://www.iop.rwth-aachen.de/PPC/1/1/maxCompletionTime",
-      "https://www.iop.rwth-aachen.de/PPC/1/1/sumTardiness"
+      "https://www.iop.rwth-aachen.de/PPC/1/1//sumTardiness"
     ],
     "formula": "Pₘ | sᵢⱼ, Mⱼ | Cₘₐₓ, ΣTⱼ"
   }

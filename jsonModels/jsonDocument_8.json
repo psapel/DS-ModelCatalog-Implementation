@@ -1,7 +1,7 @@
 {
   "_id": "64f229ac26c4757f156eb8ae",
   "GrahamNotation": {
-    "name": "Model ID 43",
+    "name": "model_43",
     "https://www.iop.rwth-aachen.de/PPC/1/1/machineEnvironment": "https://www.iop.rwth-aachen.de/PPC/1/1/flexibleJobShop",
     "https://www.iop.rwth-aachen.de/PPC/1/1/schedulingConstraints": [
       "https://www.iop.rwth-aachen.de/PPC/1/1/seqDepSetup",
@@ -11,7 +11,7 @@
       "https://www.iop.rwth-aachen.de/PPC/1/1/breakdown"
     ],
     "https://www.iop.rwth-aachen.de/PPC/1/1/schedulingObjectiveFunction": [
-      "http://www.iop.rwth-aachen.de/PPC/1/1/sumCompletionTime"
+      "https://www.iop.rwth-aachen.de/PPC/1/1/weightedSumCompletionTime"
     ],
     "formula": "FJc | sᵢⱼ, Mⱼ, rⱼ, prec, brkdwn  | ΣCⱼ"
   }
