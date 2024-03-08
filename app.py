@@ -117,6 +117,7 @@ def find_matching_model(es, url1, url2, url3):
                                          "source": "doc['https://www.iop.rwth-aachen.de/PPC/1/1/schedulingObjectiveFunction.keyword'].length == params.fixed_array_length",
                                          "params": {
                                              "fixed_array_length": len_3
+                                             
                                          }
                                      }
                              }
